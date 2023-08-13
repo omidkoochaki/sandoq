@@ -11,3 +11,13 @@ class Charity(models.Model):
 class User(AbstractUser):
     charity = models.ForeignKey(Charity, on_delete=models.CASCADE)
 
+
+class BankAccount(models.Model):
+    charity = models.ForeignKey(Charity, on_delete=models.PROTECT)
+    bank = models.CharField(max_length=64)
+    title = models.CharField(max_length=128)
+    balance = models.PositiveIntegerField(default=0)
+    last_calculation = models.DateTimeField()
+
+
+
